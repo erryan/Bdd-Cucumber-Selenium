@@ -3,6 +3,7 @@ package com.clovify.cucumber.selenium.stepDefintions;
 
 import com.clovify.cucumber.selenium.BaseTest;
 import cucumber.api.java.en.Then;
+import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 
 
@@ -75,6 +76,38 @@ public class PredefinedStepDefinitions extends BaseTest {
 
         driver.navigate().forward();
     }
+
+
+    // Assertion Steps
+
+    /**
+     * Current url checking
+     *
+     * Example :  Given should see current url as "Google"
+     * Example :  When I should see current url as "Google"
+     *
+     * @param currentUrl
+     */
+    @Then("(?:|I )should see current url as \\\"([^\\\"]*)\\\"$")
+    public static void assertCurrentUrl(String currentUrl){
+
+        Assert.assertEquals(driver.getCurrentUrl(),currentUrl);
+    }
+
+    /**
+     * Page title checking
+     *
+     * Example :  Given should see page title as "Google"
+     * Example :  When I should see page title as "Google"
+     *
+     * @param pageTitle
+     */
+    @Then("(?:|I )should see page title as \\\"([^\\\"]*)\\\"$")
+    public static void assertPageTitle(String pageTitle){
+
+        Assert.assertEquals(driver.getTitle(),pageTitle);
+    }
+
 
 
 }
