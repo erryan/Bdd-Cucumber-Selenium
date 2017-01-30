@@ -6,6 +6,9 @@ import cucumber.api.java.en.Then;
 import org.junit.Assert;
 import org.openqa.selenium.JavascriptExecutor;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 
 public class PredefinedStepDefinitions extends BaseTest {
 
@@ -83,8 +86,8 @@ public class PredefinedStepDefinitions extends BaseTest {
     /**
      * Current url checking
      *
-     * Example :  Given should see current url as "Google"
-     * Example :  When I should see current url as "Google"
+     * Example :  Given should see current url as "https://github.com/"
+     * Example :  When I should see current url as "https://github.com/"
      *
      * @param currentUrl
      */
@@ -92,6 +95,23 @@ public class PredefinedStepDefinitions extends BaseTest {
     public static void assertCurrentUrl(String currentUrl){
 
         Assert.assertEquals(driver.getCurrentUrl(),currentUrl);
+    }
+
+    /**
+     * Current url path checking
+     *
+     * Example :  Given should see current url path as "/"
+     * Example :  When I should see current url path as "/"
+     *
+     * @param currentUrlPath
+     * @throws MalformedURLException
+     */
+    @Then("(?:|I )should see current url path as \\\"([^\\\"]*)\\\"$")
+    public static void assertCurrentUrlPath(String currentUrlPath) throws MalformedURLException {
+
+        URL url = new URL(driver.getCurrentUrl());
+
+        Assert.assertEquals(url.getPath(),currentUrlPath);
     }
 
     /**
@@ -107,7 +127,6 @@ public class PredefinedStepDefinitions extends BaseTest {
 
         Assert.assertEquals(driver.getTitle(),pageTitle);
     }
-
 
 
 }

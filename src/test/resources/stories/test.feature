@@ -11,6 +11,7 @@ Feature: Example Feature
   Scenario: Assertion Steps
     Given I am on "https://github.com/"
     When I should see current url as "https://github.com/"
+    Then I should see current url path as "/"
     Then I should see page title as "How people build software · GitHub"
 
 
