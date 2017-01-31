@@ -159,5 +159,39 @@ public class PredefinedStepDefinitions extends BaseTest {
         Assert.assertFalse(bodyText.contains(text));
     }
 
+    /**
+     * Checks, that element with specified CSS contains specified text
+     *
+     * Example :  Given should see text "text" in the "css_selector" elements
+     * Example :  When I should see text "text" in the "css_selector" elements
+     *
+     * @param elementText
+     * @param selectors
+     */
+    @Then("(?:|I )should see text \\\"([^\\\"]*)\\\" in the \\\"([^\\\"]*)\\\" elements$")
+    public static void elementTextCointains(String elementText, String selectors){
+
+        String getElementText = driver.findElement(By.cssSelector(selectors)).getText();
+
+        Assert.assertTrue(getElementText.contains(elementText));
+    }
+
+    /**
+     * Checks, that element with specified CSS doesn't contain specified text
+     *
+     * Example :  Given should not see text "text" in the "css_selector" elements
+     * Example :  When I should not see text "text" in the "css_selector" elements
+     *
+     * @param elementText
+     * @param selectors
+     */
+    @Then("(?:|I )should not see text \\\"([^\\\"]*)\\\" in the \\\"([^\\\"]*)\\\" elements$")
+    public static void elementTextNotCointains(String elementText, String selectors){
+
+        String getElementText = driver.findElement(By.cssSelector(selectors)).getText();
+
+        Assert.assertFalse(getElementText.contains(elementText));
+    }
+
 
 }

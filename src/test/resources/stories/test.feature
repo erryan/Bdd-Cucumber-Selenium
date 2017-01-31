@@ -15,3 +15,5 @@ Feature: Example Feature
     Then I should see page title as "How people build software · GitHub"
     Then I should see text "How people build software"
     Then I should not see text "not text"
+    Then I should see text "Personal" in the "body > header > div > div > nav.site-header-nav.site-header-nav-main > a.js-selected-navigation-item.nav-item.nav-item-personal" elements
+    Then I should not see text "not text" in the "body > header > div > div > nav.site-header-nav.site-header-nav-main > a.js-selected-navigation-item.nav-item.nav-item-personal" elements
