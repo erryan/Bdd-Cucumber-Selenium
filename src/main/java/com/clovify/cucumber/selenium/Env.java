@@ -14,12 +14,11 @@ import java.util.concurrent.TimeUnit;
 
 public class Env {
 
-    static WebDriver driver = null;
-    static String browserName = null;
+    private static WebDriver driver = null;
 
-    public static String getBrowserName(){
+    static String getBrowserName(){
 
-        browserName = System.getProperty("browser");
+        String browserName = System.getProperty("browser");
 
         if(browserName == null)
             browserName = "chrome";
@@ -27,7 +26,7 @@ public class Env {
     }
 
 
-    public static WebDriver CreateWebDriver(String browser){
+    static WebDriver CreateWebDriver(String browser){
 
         switch (browser.toLowerCase()) {
             case "ch":

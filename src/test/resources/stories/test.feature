@@ -14,5 +14,4 @@ Feature: Example Feature
     Then I should see current url path as "/"
     Then I should see page title as "How people build software · GitHub"
     Then I should see text "How people build software"
-
-
+    Then I should not see text "not text"

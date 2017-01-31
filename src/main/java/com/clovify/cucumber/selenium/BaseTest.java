@@ -2,8 +2,10 @@ package com.clovify.cucumber.selenium;
 
 import org.openqa.selenium.WebDriver;
 
+import static com.clovify.cucumber.selenium.Env.CreateWebDriver;
+
 public class BaseTest {
 
-    public static WebDriver driver = Env.CreateWebDriver(Env.getBrowserName());
+    protected static WebDriver driver = CreateWebDriver(Env.getBrowserName());
 
 }

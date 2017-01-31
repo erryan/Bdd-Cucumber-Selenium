@@ -144,5 +144,20 @@ public class PredefinedStepDefinitions extends BaseTest {
         Assert.assertTrue(bodyText.contains(text));
     }
 
+    /**
+     * Checks, that page doesn't contain specified text
+     *
+     * Example :  Given should not see text "Google"
+     * Example :  When I should not see text "Google"
+     *
+     * @param text
+     */
+    @Then("(?:|I )should not see text \\\"([^\\\"]*)\\\"$")
+    public static void assertNotPageContainsText(String text){
+
+        String bodyText = driver.findElement(By.tagName("body")).getText();
+        Assert.assertFalse(bodyText.contains(text));
+    }
+
 
 }
