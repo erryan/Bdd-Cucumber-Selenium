@@ -4,6 +4,7 @@ package com.clovify.cucumber.selenium.stepDefintions;
 import com.clovify.cucumber.selenium.BaseTest;
 import cucumber.api.java.en.Then;
 import org.junit.Assert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 
 import java.net.MalformedURLException;
@@ -126,6 +127,21 @@ public class PredefinedStepDefinitions extends BaseTest {
     public static void assertPageTitle(String pageTitle){
 
         Assert.assertEquals(driver.getTitle(),pageTitle);
+    }
+
+    /**
+     * Checks, that page contains specified text
+     *
+     * Example :  Given should see text "Google"
+     * Example :  When I should see text "Google"
+     *
+     * @param text
+     */
+    @Then("(?:|I )should see text \\\"([^\\\"]*)\\\"$")
+    public static void assertPageContainsText(String text){
+
+        String bodyText = driver.findElement(By.tagName("body")).getText();
+        Assert.assertTrue(bodyText.contains(text));
     }
 
 
