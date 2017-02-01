@@ -160,7 +160,7 @@ public class PredefinedStepDefinitions extends BaseTest {
     }
 
     /**
-     * Checks, that element with specified CSS contains specified text
+     * Assert DOM-element(s) with the provided CSS Selector contains the provided text.
      *
      * Example :  Given should see text "text" in the "css_selector" elements
      * Example :  When I should see text "text" in the "css_selector" elements
@@ -177,7 +177,7 @@ public class PredefinedStepDefinitions extends BaseTest {
     }
 
     /**
-     * Checks, that element with specified CSS doesn't contain specified text
+     * Assert DOM-element(s) with the provided CSS Selector do not contains the provided text.
      *
      * Example :  Given should not see text "text" in the "css_selector" elements
      * Example :  When I should not see text "text" in the "css_selector" elements
@@ -192,6 +192,83 @@ public class PredefinedStepDefinitions extends BaseTest {
 
         Assert.assertFalse(getElementText.contains(elementText));
     }
+
+    /**
+     * Assert page contains X DOM-elements with the provided CSS Selector.
+     *
+     * Example :  Given I should see 6 "ul.site-footer-links:nth-child(1) > li" elements
+     * Example :  When I should see 6 "ul.site-footer-links:nth-child(1) > li" elements
+     *
+     * @param htmlElementCount
+     * @param selector
+     */
+    @Then("^I should see (\\d+) \"([^\"]*)\" elements?$")
+    public static void assertHtmlElementsCount(int htmlElementCount, String selector){
+
+        Assert.assertEquals(driver.findElements(By.cssSelector(selector)).size(),htmlElementCount);
+
+    }
+
+    /**
+     * Assert if the selected DOM-element found by given selector is visible.
+     *
+     * Example :  Given I should see an "h2.content-subhead" element
+     * Example :  When I should see an "h2.content-subhead" element
+     *
+     * @param selector
+     */
+    @Then("^I should not see an? \"([^\"]*)\" element$")
+    public static void assertElementVisiable(String selector){
+
+        Assert.assertTrue(driver.findElement(By.cssSelector(selector)).isEnabled());
+    }
+
+    /**
+     * Assert if the selected DOM-element found by given selector is not visible.
+     *
+     * Example :  Given I should see an "h2.content-subhead" element
+     * Example :  When I should see an "h2.content-subhead" element
+     *
+     * @param selector
+     */
+    @Then("^I should see an? \"([^\"]*)\" element$")
+    public static void assertElementNotVisiable(String selector){
+
+        Assert.assertFalse(driver.findElement(By.cssSelector(selector)).isEnabled());
+    }
+
+    /**
+     * Assert that at least one element exits matching given selector.
+     *
+     * Example :  Given the "h2.content-subhead" element should exist
+     * Example :  When the "h2.content-subhead" element should exist
+     *
+     * @param selector
+     */
+    @Then("^the \"([^\"]*)\" element should exist$")
+    public static void assertElementExists(String selector) {
+
+        Boolean isPresent = driver.findElements(By.cssSelector(selector)).size() > 0;
+        Assert.assertTrue(isPresent);
+
+    }
+
+    /**
+     * Assert that no element exists matching given selector.
+     *
+     * Example :  Given the "h2.content-subhead" element should not exist
+     * Example :  When the "h2.content-subhead" element should not exist
+     *
+     * @param selector
+     */
+    @Then("^the \"([^\"]*)\" element should not exist$")
+    public static void assertElementNotExists(String selector){
+
+        Boolean isPresent = driver.findElements(By.cssSelector(selector)).size() > 0;
+        Assert.assertFalse(isPresent);
+
+    }
+
 
     // Action Steps
 
