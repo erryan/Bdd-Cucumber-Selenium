@@ -17,3 +17,11 @@ Feature: Example Feature
     Then I should not see text "not text"
     Then I should see text "Personal" in the "body > header > div > div > nav.site-header-nav.site-header-nav-main > a.js-selected-navigation-item.nav-item.nav-item-personal" elements
     Then I should not see text "not text" in the "body > header > div > div > nav.site-header-nav.site-header-nav-main > a.js-selected-navigation-item.nav-item.nav-item-personal" elements
+
+  Scenario: Actions Steps
+    Given I am on "https://github.com"
+    When  I click on "a.js-selected-navigation-item:nth-child(1)"
+    Then  I follow "https://github.com/about"
+    Then  I submit "button.showModal" form
+
+

@@ -193,5 +193,63 @@ public class PredefinedStepDefinitions extends BaseTest {
         Assert.assertFalse(getElementText.contains(elementText));
     }
 
+    // Action Steps
+
+    /**
+     * Click on an element based on given css selector.
+     *
+     * Example :  Given I click on "button.showModal"
+     * Example :  When I click on "button.showModal"
+     *
+     * @param selector
+     */
+    @Then("^I click on \"([^\"]*)\"$")
+    public static void click(String selector){
+
+        driver.findElement(By.cssSelector(selector)).click();
+    }
+
+    /**
+     * Click button on an element based on given css selector.
+     *
+     * Example :  Given I click button on "button.showModal"
+     * Example :  When I click button on "button.showModal"
+     *
+     * @param selector
+     */
+    @Then("^I click button on \"([^\"]*)\"$")
+    public static void clickButton(String selector){
+
+        Assert.assertEquals("button",driver.findElement(By.cssSelector(selector)).getTagName());
+        driver.findElement(By.cssSelector(selector)).submit();
+    }
+
+    /**
+     * Press a button element with string argument interpreted as (in order):
+     *
+     * Example :  Given I follow "https://github.com/about"
+     * Example :  When I follow "https://github.com/about"
+     *
+     * @param href
+     */
+    @Then("^I follow \"([^\"]*)\"$")
+    public static void followHref(String href){
+
+        driver.findElement(By.cssSelector("a[href=\'"+href+"\']")).click();
+    }
+
+    /**
+     * Submits a form found by given selector. The submit command may also be applied to any element that is a descendant of a <form> element.
+     *
+     * Example :  Given I submit "button.showModal"
+     * Example :  When I submit "button.showModal"
+     *
+     * @param selector
+     */
+    @Then("^I submit \"([^\"]*)\" form$")
+    public static void submitForm(String selector){
+
+        driver.findElement(By.cssSelector(selector)).submit();
+    }
 
 }
